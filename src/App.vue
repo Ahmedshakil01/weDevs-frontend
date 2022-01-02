@@ -1,18 +1,32 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="maindiv" v-if="user">
+    <NavBar />
+    <router-view />
+    <Footer />
+  </div>
+  <div class="maindiv" v-else>
+    <Dashboard />
+  </div>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import NavBar from "@/components/NavBar.vue";
+import Footer from "@/components/Footer.vue";
+import Dashboard from "@/views/admin/Dashboard.vue";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    NavBar,
+    Footer,
+    Dashboard,
+  },
+  data() {
+    return {
+      user: true,
+    };
+  },
+};
 </script>
+
 
 <style>
 #app {
@@ -21,6 +35,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
